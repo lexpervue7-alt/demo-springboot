@@ -34,7 +34,7 @@ services:
 
   springboot-app:
     container_name: demo-springboot
-    build: .
+    image: lexpervue7-alt/demo-springboot
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/demo
       SPRING_DATASOURCE_USERNAME: sara
