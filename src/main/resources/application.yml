@@ -18,24 +18,15 @@ management:
 spring:
   application:
     name: demo
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/ecomdb
+    url: jdbc:postgresql://postgres:5432/demo
     username: sara
     password: sara
+    driver-class-name: org.postgresql.Driver
+
   jpa:
-    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-# Exemple de configuration H2 si nécessaire
-# h2:
-#   console:
-#     enabled: true
-#   datasource:
-#     url: jdbc:h2:mem:test
-#   jpa:
-#     show-sql: true
-#     hibernate:
-#       ddl-auto: create
