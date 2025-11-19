@@ -1,10 +1,9 @@
-version: '3.8'
-
 services:
   postgres:
     container_name: postgres
     image: postgres:14
     environment:
+      POSTGRES_DB: demo
       POSTGRES_USER: sara
       POSTGRES_PASSWORD: sara
       PGDATA: /data/postgres
@@ -31,6 +30,21 @@ services:
       - "5050:80"
     networks:
       - backend
+    restart: unless-stopped
+
+  springboot-app:
+    container_name: demo-springboot
+    build: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/demo
+      SPRING_DATASOURCE_USERNAME: sara
+      SPRING_DATASOURCE_PASSWORD: sara
+    ports:
+      - "8080:8080"
+    networks:
+      - backend
+    depends_on:
+      - postgres
     restart: unless-stopped
 
 volumes:
